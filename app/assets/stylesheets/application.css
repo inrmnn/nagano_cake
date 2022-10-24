@@ -13,6 +13,7 @@
  *= require_tree .
  *= require_self
  */
-.sign_up{
+.sign_in{
     margin-left: 15%;
 }
+
