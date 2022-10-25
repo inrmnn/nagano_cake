@@ -1,9 +1,10 @@
 Rails.application.routes.draw do
 
   namespace :public do
-    get 'homes/top'
-    get 'homes/about'
+    root to: 'homes#top'
+    get '/about' => 'homes#about'
   end
+  
       # 顧客用
     # URL /customers/sign_in ...
     devise_for :customers,skip: [:passwords], controllers: {
