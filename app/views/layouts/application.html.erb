@@ -9,6 +9,7 @@
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+  
   </head>
 
   <body>
@@ -34,6 +35,7 @@
                 <a class="nav-link h4 ml-4" href="#">ログイン</a>
               </li>
             </ul>
+            <%= link_to "ログアウト", destroy_admin_session_path, method: :delete %>
             <nav class="navbar  ml-auto">
               <div class="container-fluid">
                 <form class="d-flex">
@@ -46,6 +48,12 @@
         </div>
       </nav>
     </header>
-    <%= yield %>
+     <div class="main-body container">
+      <p class="flash" id="notice"><%= flash[:notice] %></p>
+      <p class="flash" id="success"><%= flash[:success] %></p>
+      <p class="flash" id="alert"><%= flash[:alert] %></p>
+      <p class="flash" id="error"><%= flash[:error] %></p>
+      <%= yield %>
+    </div>
   </body>
 </html>

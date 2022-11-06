@@ -1,9 +1,4 @@
 Rails.application.routes.draw do
-
-  namespace :public do
-    root to: 'homes#top'
-    get '/about' => 'homes#about'
-  end
   
       # 顧客用
     # URL /customers/sign_in ...
@@ -18,4 +13,12 @@ Rails.application.routes.draw do
       sessions: "admin/sessions"
     }
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
-end
+  
+     namespace :admin do
+      resources :items, only: [:index, :new, :show, :edit]
+      end
+    namespace :public do
+      root to: 'homes#top'
+      get '/about' => 'homes#about'
+    end
+  end
