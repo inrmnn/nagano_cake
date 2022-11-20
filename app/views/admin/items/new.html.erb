@@ -4,18 +4,18 @@
 　　　 <h2 class="mb-3">商品新規登録</h2>
     </div>     
   </div> 
- <%= form_with model: @adminsitem do |f| %>
+ <%= form_with model: @admins_item, url: admin_items_path do |f| %>
   <div class="row justify-content-center">
       <div class="col-8 mb-3">
               <div class="row">
                 <div class="col-2 h5 mt-5">商品画像</div>
                     
-                      <div class="col-3 offset-1 ">
+                      <label class="col-3 offset-1 ">
                           <div class="custom-file">
                                <%= f.file_field :image, accept: "image/*", class: "custom-file-input" %>
                               <span class="btn btn btn-outline-dark">ファイルを選択</span>
                            </div>  
-                      </div>
+                      </label>
                      <p class="file_message mt-5">選択されていません</p>
              </div>
       </div>
@@ -39,6 +39,15 @@
        </div>
         <div class="col-8 mb-3">
               <div class="row">
+                <div class="col-2 h5 mt-2">ジャンル</div>
+                    <div class="col-7 offset-1">
+                    <%= f.collection_select(:genre_id, @genres, :id, :name, {prompt: "選択してください"}, class: "form-control") %>
+                   </div>
+                   
+            　 </div>
+         </div>
+        <div class="col-8 mb-3">
+              <div class="row">
                 <div class="col-2 h5 mt-2">税抜価格</div>
                     <div class="col-7 offset-1">
                         <%= f.text_field :price, autofocus: true, autocomplete: "price", class: "form-control" %>
@@ -50,14 +59,15 @@
               <div class="row">
                 <div class="col-3 mt-2">販売ステータス</div>
                     <div class="col-7">
-                      <%= f.radio_button :checked, :true %>
+                      <%= f.radio_button :is_active, :true %>
                       <%= f.label :is_active, "販売中  " %>
-                      <%= f.radio_button :checked, :false %>
+                      <%= f.radio_button :is_active, :false %>
                       <%= f.label :is_active, "販売停止中" %>
                    </div>
                    
             　 </div>
          </div>
+         
          <div class="col-11 mb-3">
               <div class="row">
                 <div class="col-3 offset-4">
