@@ -25,7 +25,7 @@ Rails.application.routes.draw do
      end
      
       namespace :public do
-       resources :customers, only:[:show, :edit, :update]
+       resource :customers, only:[:show, :edit, :update]
        
        get '/customers/confirmation' => 'customers#confirmation', as: 'confirmation'
        
