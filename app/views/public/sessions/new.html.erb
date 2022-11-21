@@ -47,3 +47,5 @@
   </div>
  
 </div>
+ <%= link_to "退会する", public_withdraw_path, method: :patch, data: { confirm: "本当に退会しますか？" } %>
+      <%= link_to "退会しない", public_customers_path(current_customer) %>
