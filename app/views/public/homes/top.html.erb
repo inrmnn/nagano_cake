@@ -1,0 +1,37 @@
+<div class="container mt-5">
+    <div class="row">
+       
+         <%= render 'public/items/genre',genres: @genres %>
+        <div class="col-9">
+             <div class="main-visual-text">
+                        
+                  <h1>Welcome to 「NAGANO CAKE」 </h1>
+                <p class="mb-5">
+                  このサイトは、ケーキ販売のECサイトになります。</br>
+                  会員でない方も商品の閲覧はできますが、購入には会員登録が必要になります。
+                </p>
+              </div>
+               <h3 class="text-color text-center col-3 pt-2 pb-2 rounded-pill mt-5"><strong>新着商品</strong></h3>
+                  <div class="row">
+                    <% @items.last(4).reverse.each do |item| %>
+                      <div class="card-group">
+                          <div class ="card card border-light mb-3 ml-2 mr-2">
+                            <div class ="card-img-top">
+                               <%= link_to  item_path(item.id) do %>
+                                   <%= image_tag item.get_image(200,200) %>
+                               <% end %>
+                            </div>
+                
+                            <div class="card-body">
+                              <h5 class="card-title"><%= item.name %></h5>
+                              <p class="card-text">
+                                   ¥ <%= item.add_tax_price.to_s(:delimited) %>
+                              </p>
+                            </div>
+                          </div>
+                      </div>
+                    <% end %>
+                  </div>
+        </div>
+    </div>
+</div>

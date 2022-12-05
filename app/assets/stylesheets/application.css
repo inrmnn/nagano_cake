@@ -20,3 +20,12 @@
 .about{
     font-size: 56px;
 }
+
+ .genre_table {
+    border-collapse: collapse;
+    border:1px solid #333;
+ }
+ 
+ .genre_thead {
+     border-bottom: solid 1px;
+ }

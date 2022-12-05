@@ -1,0 +1,18 @@
+<div class="container">
+    <div class="row">
+        <div class="col-7">
+            <h4>注文情報入力</h4>
+            <%= form_with model: @order, url: orders_confirmation_path do |f| %>
+            <div>
+                <h5>支払方法</h5>
+                <div>
+                    <%= f.radio_button :payment_method, Order.payment_methods.key(0) %>
+                    <%= f.label :payment_method_credit_card, Order.payment_methods_i18n[:credit_card] %>
+                     <br>
+                    <%= f.radio_button :payment_method, Order.payment_methods.key(1) %>
+                    <%= f.label :payment_method_transfer, Order.payment_methods_i18n[:transfer]%>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
