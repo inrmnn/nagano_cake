@@ -45,7 +45,8 @@ Rails.application.routes.draw do
         post '/orders/confirmation' => 'orders#confirmation'
         get '/orders/completion' => 'orders#completion'
         
-        resources :address, only:[:index, :edit, :create, :update, :destroy]
+        resources :addresses, only:[:index, :edit, :create, :update, :destroy]
+        
         root to: 'homes#top'
         get '/about' => 'homes#about'
       end
