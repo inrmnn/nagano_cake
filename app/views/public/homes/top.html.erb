@@ -1,8 +1,8 @@
-<div class="container mt-5">
+<div class="container  mt-5">
     <div class="row">
        
          <%= render 'public/items/genre',genres: @genres %>
-        <div class="col-9">
+        <div class="col-10">
              <div class="main-visual-text">
                         
                   <h1>Welcome to 「NAGANO CAKE」 </h1>
@@ -15,7 +15,7 @@
                   <div class="row">
                     <% @items.last(4).reverse.each do |item| %>
                       <div class="card-group">
-                          <div class ="card card border-light mb-3 ml-2 mr-2">
+                          <div class ="card  mb-3 ml-2 mr-2">
                             <div class ="card-img-top">
                                <%= link_to  item_path(item.id) do %>
                                    <%= image_tag item.get_image(200,200) %>
@@ -31,7 +31,12 @@
                           </div>
                       </div>
                     <% end %>
+                   
                   </div>
+                  
+        </div>
+         <div class="ml-auto">
+           <%= link_to "全ての商品を見る＞", items_path %>
         </div>
     </div>
 </div>

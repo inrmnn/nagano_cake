@@ -9,25 +9,29 @@
       </div>
     
     
-  <div class="row row-cols-1 row-cols-md-4 g-4">
+  <div class="row g-4">
     <%= render 'genre',genres: @genres %>
-     <% @items.each do |item| %>
-      <div class="col-md-3">
-        <div class="card mb-3" style="width: 16rem;">
-         <%= link_to  item_path(item.id) do %>
-           <%= image_tag item.get_image(255,210) %>
-         <% end %>
-          <div class="card-body">
-            <h5 class="card-title">
-              <%= item.name %>
-            </h5>
-            <p class="card-text">
-              ¥ <%= item.add_tax_price.to_s(:delimited) %>
-            </p>
-          </div>
+    <div class="col-10">
+        <div class="row">
+             <% @items.each do |item| %>
+              <div class="card-group">
+                <div class="card  mb-3 ml-2 mr-2">
+                 <%= link_to  item_path(item.id) do %>
+                   <%= image_tag item.get_image(200,200) %>
+                 <% end %>
+                  <div class="card-body">
+                    <h5 class="card-title">
+                      <%= item.name %>
+                    </h5>
+                    <p class="card-text">
+                      ¥ <%= item.add_tax_price.to_s(:delimited) %>
+                    </p>
+                  </div>
+                </div>
+              </div>
+            <% end %>
         </div>
       </div>
-    <% end %>
   </div>
 </div>
 </div>

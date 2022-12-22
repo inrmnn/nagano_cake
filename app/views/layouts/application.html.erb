@@ -16,26 +16,72 @@
     <header class="d-flex flex-column ">
       <nav class="navbar navbar-expand-lg navbar-light border border-dark">
         <div class="container-fluid">
-          <a class="navbar-brand h1" href="#">ながのCAKE</a>
+          
+            <% if admin_signed_in? %>
+              <%= link_to "NaganoCAKE", admin_root_path, class:"header-title navbar-brand"%>
+            <% else %>
+              <%= link_to "NaganoCAKE", root_path, class:"header-title navbar-brand"%>
+              
+            <% end %>
+
+          
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
+          <div class="my-auto ml-5">
+              <% if customer_signed_in? %>
+               ようこそ <%= "#{current_customer.last_name} #{current_customer.first_name}" %>さん
+              <% end %>
+            </div>
           <div class="collapse navbar-collapse d-flex flex-column" id="navbarNav">
+            
             <ul class="navbar-nav ml-auto">
+             <% if customer_signed_in? %>
+            
               <li class="nav-item">
-                <a class="nav-link h4 ml-4" href="#">About</a>
+                <%= link_to "マイページ", customers_path(current_customer), class: "btn btn-outline-secondary mx-3 my-1"%>
+              </li>
+              <li class="nav-item ">
+                <%= link_to "商品一覧", items_path,class: 'btn btn-outline-secondary mx-3 my-1'%>
               </li>
               <li class="nav-item">
-                <a class="nav-link h4 ml-4" href="#">商品一覧</a>
+                <%= link_to "カート",cart_items_path,class: 'btn btn-outline-secondary mx-3 my-1'%>
               </li>
               <li class="nav-item">
-                <a class="nav-link h4 ml-4" href="#">新規登録</a>
+                <%= link_to "ログアウト", destroy_customer_session_path, method: :delete,class: 'btn btn-outline-secondary mx-3 my-1'%>
               </li>
-              <li class="nav-item">
-                <a class="nav-link h4 ml-4" href="#">ログイン</a>
-              </li>
+             <% elsif admin_signed_in? %>
+               <li class="nav-item">
+                 <%= link_to "商品一覧", admin_items_path,class: 'btn btn-outline-secondary mx-3 my-1' %>
+               </li>
+               <li class="nav-item">
+                 <%= link_to "会員一覧", admin_customers_path, class:'btn btn-outline-secondary mx-3 my-1'%>
+               </li>
+               <li class="nav-item">
+                 <%= link_to "注文履歴一覧", admin_root_path, class:'btn btn-outline-secondary mx-3 my-1'%>
+               </li>
+               <li class="nav-item">
+                 <%= link_to "ジャンル一覧", admin_genres_path,class: 'btn btn-outline-secondary mx-3 my-1'%>
+               </li>
+               <li class="nav-item">
+                 <%= link_to "ログアウト",destroy_admin_session_path, method: :delete,class: 'btn btn-outline-secondary mx-3 my-1'%>
+               </li>
+             <% else %>
+             <li class="nav-item">
+                 <%= link_to "about", about_path,class: 'btn btn-outline-secondary mx-3 my-1' %>
+               </li>
+               <li class="nav-item">
+                 <%= link_to "商品一覧", items_path,class: 'btn btn-outline-secondary mx-3 my-1' %>
+               </li>
+               <li class="nav-item">
+                 <%= link_to "新規登録", new_customer_registration_path,class: 'btn btn-outline-secondary mx-3 my-1'%>
+               </li>
+               <li class="nav-item">
+                 <%= link_to "ログイン", new_customer_session_path,class: 'btn btn-outline-secondary mx-3 my-1'%>
+               </li>
+              <% end %>
             </ul>
-            <%= link_to "ログアウト", destroy_admin_session_path, method: :delete %>
+                
             <nav class="navbar  ml-auto">
               <div class="container-fluid">
                 <form class="d-flex">
@@ -48,12 +94,18 @@
         </div>
       </nav>
     </header>
-     <div class="main-body container">
+     <div class="main-body container-fluid">
       <p class="flash" id="notice"><%= flash[:notice] %></p>
       <p class="flash" id="success"><%= flash[:success] %></p>
       <p class="flash" id="alert"><%= flash[:alert] %></p>
       <p class="flash" id="error"><%= flash[:error] %></p>
       <%= yield %>
     </div>
+    <footer>
+     
+            <div class="footer-space"></div>
+       
+  </footer>
   </body>
+  
 </html>
